@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var pubRouter = require('./routes/pub');
+var articlesRouter = require('./routes/articles');
 var authRouter = require('./routes/auth');
 
 // json校验
@@ -28,32 +28,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //  token 校验
-var expressJwt = require('express-jwt');
-app.use(expressJwt({ 
-  secret: privateKey,
-  algorithms:['HS256'],
-  getToken: function fromHeaderOrQuerystring (req) {
-    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-        return req.headers.authorization.split(' ')[1];
-    } else if (req.query && req.query.token) {
-      return req.query.token;
-    }
-    return null;
-  }
-  // 排除Token校验的路径
-}).unless({path: ['/auth/login','/auth/register']}));
+// var expressJwt = require('express-jwt');
+// app.use(expressJwt({ 
+//   secret: privateKey,
+//   algorithms:['HS256'],
+//   getToken: function fromHeaderOrQuerystring (req) {
+//     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+//         return req.headers.authorization.split(' ')[1];
+//     } else if (req.query && req.query.token) {
+//       return req.query.token;
+//     }
+//     return null;
+//   }
+//   // 排除Token校验的路径
+// }).unless({path: ['/auth/login','/auth/register']}));
 
-app.use(function (err, req, res, next) {
-  console.log(err.name)
-  if (err.name === 'UnauthorizedError') {
-    res.status(401).json({code:100,msg:'token校验失败'});
-  }
-});
+// app.use(function (err, req, res, next) {
+//   console.log(err.name)
+//   if (err.name === 'UnauthorizedError') {
+//     res.status(401).json({code:100,msg:'token校验失败'});
+//   }
+// });
 
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/pub', pubRouter);
+app.use('/articles', articlesRouter);
 app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
@@ -69,6 +69,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  console.log(err.message)
   res.render('error');
 });
 

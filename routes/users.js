@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 // 查询单个用户信息
 router.get('/findUser', function(req, res, next) {
-   models.User.findAll({where:{username:req.query.username}}).then(rows=>{
+   models.usersModel.findAll({where:{username:req.query.username}}).then(rows=>{
     res.json(rows)
   })
   
@@ -18,7 +18,7 @@ router.get('/findUser', function(req, res, next) {
 
 // 查询所有用户信息
 router.get('/findUserAll', function(req, res, next) {
-  models.User.findAll({}).then(rows=>{
+  models.usersModel.findAll({}).then(rows=>{
     res.json(rows)
   })
 });
