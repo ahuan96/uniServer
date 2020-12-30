@@ -10,8 +10,10 @@ router.get('/', function(req, res, next) {
   
 
 /* GET home page. */
-router.get('/login', function(req, res, next) {
-    models.User.findAll({where:{username:req.query.username}})
+router.get('/add', function(req, res, next) {
+  let query = req.query
+    models.articlesModel
+    .create({ content: query.content, type_id: query.type_id, type_id: query.type_id, type_id: query.type_id })
     .then(rows=>{
        if(rows.length>0){
            res.json({code:200,msg:'该用户已被注册'})
