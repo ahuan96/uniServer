@@ -7,7 +7,6 @@ module.exports = sequelize => {
     content: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -16,7 +15,6 @@ module.exports = sequelize => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: null,
       primaryKey: true,
       autoIncrement: true,
       comment: null,
@@ -25,7 +23,6 @@ module.exports = sequelize => {
     typeId: {
       type: DataTypes.STRING(10),
       allowNull: true,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -34,7 +31,6 @@ module.exports = sequelize => {
     styleId: {
       type: DataTypes.STRING(10),
       allowNull: true,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -43,7 +39,6 @@ module.exports = sequelize => {
     isgap: {
       type: DataTypes.STRING(10),
       allowNull: true,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -52,34 +47,38 @@ module.exports = sequelize => {
     colorId: {
       type: DataTypes.STRING(10),
       allowNull: true,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "color_id"
+      field: "color"
     },
     author: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "author"
     },
-    createTime: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: null,
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "create_time"
+      field: "createdAt"
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "updatedAt"
     },
     userId: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
@@ -88,7 +87,6 @@ module.exports = sequelize => {
     state: {
       type: DataTypes.STRING(10),
       allowNull: true,
-      defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: "0 未发布 1待审核 2已通过",
